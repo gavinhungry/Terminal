@@ -26,14 +26,14 @@
     },
     {
         "caption": "Terminal: Open",
-        "command": "open_terminal"
+        "command": "terminal_open"
     },
     {
         "caption": "Terminal: Open in project folder",
-        "command": "open_terminal_project_folder"
+        "command": "terminal_open_project_folder"
     },
     {
         "caption": "Terminal: Switch to application",
-        "command": "switch_to_terminal"
+        "command": "terminal_switch"
     }
 ]

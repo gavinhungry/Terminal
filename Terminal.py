@@ -171,7 +171,7 @@ class TerminalCommand():
             sublime.error_message('Terminal: ' + str(exception))
 
 
-class OpenTerminalCommand(sublime_plugin.WindowCommand, TerminalCommand):
+class TerminalOpenCommand(sublime_plugin.WindowCommand, TerminalCommand):
     def is_visible(self, paths=[]):
         # remove the command if the view doesn't have a path to open at
         # taking is_visible over is_enabled to remove it from the context menu,
@@ -194,7 +194,7 @@ class OpenTerminalCommand(sublime_plugin.WindowCommand, TerminalCommand):
         self.open_terminal(path, terminal, parameters)
 
 
-class OpenTerminalProjectFolderCommand(sublime_plugin.WindowCommand, TerminalCommand):
+class TerminalOpenProjectFolderCommand(sublime_plugin.WindowCommand, TerminalCommand):
     def is_visible(self):
         # remove the command if the current window doesn't have directories
         # i.e. it's a single file (use the other command)
@@ -211,11 +211,11 @@ class OpenTerminalProjectFolderCommand(sublime_plugin.WindowCommand, TerminalCom
         # See https://github.com/wbond/sublime_terminal/issues/86
         folders = [x for x in self.window.folders() if path.find(x + os.sep) == 0][0:1]
 
-        command = OpenTerminalCommand(self.window)
+        command = TerminalOpenCommand(self.window)
         command.run(folders, parameters=parameters)
 
 
-class SwitchToTerminalCommand(sublime_plugin.WindowCommand, TerminalCommand):
+class TerminalSwitchCommand(sublime_plugin.WindowCommand, TerminalCommand):
     def is_visible(self):
         # only have an applescript to do this
         return sys.platform == 'darwin'

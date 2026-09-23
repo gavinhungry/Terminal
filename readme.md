@@ -21,12 +21,15 @@ To create keyboard shortcuts, open the *Preferences > Package Settings > Termina
 
 ```json
 [
-  { "keys": ["super+shift+t"], "command": "open_terminal" },
-  { "keys": ["super+shift+alt+t"], "command": "open_terminal_project_folder" }
+  { "keys": ["super+shift+t"], "command": "terminal_open" },
+  { "keys": ["super+shift+alt+t"], "command": "terminal_open_project_folder" }
 ]
 ```
 
 Note that in version 2 of this package, we stopped enabling these bindings by default. They conflicted with built-in bindings of Sublime Text, and users might have different preferences.
+
+If you have existing custom bindings or menu entries, update their command names: `open_terminal` to `terminal_open`, `open_terminal_project_folder` to `terminal_open_project_folder`, and `switch_to_terminal` to `terminal_switch`.
+Sublime Text now has a built-in `open_terminal` command, so the old package command name cannot be used to invoke this package reliably.
 
 ## Package Settings
 
@@ -45,14 +48,14 @@ The settings can be viewed and edited by accessing the *Preferences > Package Se
 
 ## Custom Parameters
 
-By passing parameters argument to the `open_terminal` or `open_terminal_project_folder` commands, it is possible to construct custom terminal environments. You can do so by creating custom [key bindings](https://www.sublimetext.com/docs/key_bindings.html) that call these commands with the arguments you want, as we'll document here, or by adding custom [command palette](https://docs.sublimetext.io/reference/command_palette.html) or [menu entries](https://docs.sublimetext.io/reference/menus.html). 
+By passing parameters argument to the `terminal_open` or `terminal_open_project_folder` commands, it is possible to construct custom terminal environments. You can do so by creating custom [key bindings](https://www.sublimetext.com/docs/key_bindings.html) that call these commands with the arguments you want, as we'll document here, or by adding custom [command palette](https://docs.sublimetext.io/reference/command_palette.html) or [menu entries](https://docs.sublimetext.io/reference/menus.html).
 
 The following is an example, of passing the parameters `-T 'Custom Window Title'`` to an XFCE terminal.
 
 ```json
 {
  "keys": ["ctrl+alt+t"],
- "command": "open_terminal",
+ "command": "terminal_open",
  "args": {
    "parameters": ["-T", "Custom Window Title"]
  }
@@ -64,7 +67,7 @@ A parameter may also contain the *%CWD%* placeholder, which will be substituted 
 ```json
 {
  "keys": ["ctrl+alt+t"],
- "command": "open_terminal",
+ "command": "terminal_open",
  "args": {
    "parameters": ["-T", "Working in directory %CWD%"]
  }
