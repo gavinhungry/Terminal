@@ -145,7 +145,7 @@ class TerminalCommand():
         sublime.status_message('Terminal: opening at home directory')
         return os.path.expanduser('~')
 
-    def open_terminal(self, location, terminal, parameters):
+    def terminal_open(self, location, terminal, parameters):
         try:
             for k, v in enumerate(parameters):
                 parameters[k] = v.replace('%CWD%', location)
@@ -191,7 +191,7 @@ class TerminalOpenCommand(sublime_plugin.WindowCommand, TerminalCommand):
         if os.path.isfile(path):
             path = os.path.dirname(path)
 
-        self.open_terminal(path, terminal, parameters)
+        self.terminal_open(path, terminal, parameters)
 
 
 class TerminalOpenProjectFolderCommand(sublime_plugin.WindowCommand, TerminalCommand):
